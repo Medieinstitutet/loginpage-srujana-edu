@@ -36,7 +36,7 @@ localStorage.setItem("userLocation", packedList1);
 
 
 //calling main function
-signUpFormdiv();
+
 homePage();
 
 //main function defination
@@ -276,52 +276,3 @@ function thanksforregistration(){
     
     returnToHomescreen.addEventListener("click", homePage);
 }
-
-
-
-
-
-
-function signUpFormdiv(){
-
-    
-
- 
-
-    let header = document.getElementById("topid");
-    header.innerText = "Sign Up!";
-    header.className = "myHeader";
-
-    
-
-
-    //adding new user input
-    
-    let newUserInput = document.createElement("input");
-    newUserInput.placeholder = "Username";
-    newUserInput.type = "newUserInput";
-    newUserInput.id = "newUserInput";
-    content.append(newUserInput);
-
-    let userLabel1=document.createElement("label");
-    userLabel1.innerText="User Name";
-    
-    newUserInput.prepend(userLabel1);
-
-    //adding new password input
-    let newPasswordInput = document.createElement("input");
-    newPasswordInput.placeholder = "password";
-    newPasswordInput.type = "password";
-    newPasswordInput.id = "newPasswordInput";
-    content.append(newPasswordInput);
-
-    
-
-    //adding save button to save new user details    
-    let savebtn = document.createElement("button");
-    savebtn.innerText = "save";
-    content.append(savebtn);
-  //content.appendChild(content);
-    savebtn.addEventListener("click", saveRegistration);
-    
-    }
