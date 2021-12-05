@@ -17,17 +17,16 @@ footer.append(footerText);
 
 main.append(header, content, footer);
 
-// seeding user list 
+// seeding user list
 let userList = [
     {
       "username": "janne",
       "password": "test",
-      
     },
     {
         "username": "srujana",
-        "password": "vissu",
-    },
+        "password": "vissu"
+    }
 ];
 
 let packedList1=JSON.stringify(userList);
@@ -41,16 +40,14 @@ homePage();
 
 //main function defination
 function homePage(){
-   
-    content.innerHTML="";
+content.innerHTML="";
 
-    let header = document.getElementById("topid");
-    header.innerText = "Login Page!";
-    header.className = "myHeader";
-    
+    let header1 = document.getElementById("topid");
+    header1.innerText = "Login Page!";
+    header1.className = "myHeader";
 if(localStorage.getItem("loggedInuser")== 'null'|| localStorage.getItem("loggedInuser")== null)
 {
-    //adding user input 
+    //adding user input
     let usernameInput = document.createElement("input");
     usernameInput.placeholder = "Username";
     usernameInput.type = "usernameInput";
@@ -95,28 +92,25 @@ if(localStorage.getItem("loggedInuser")== 'null'|| localStorage.getItem("loggedI
 }else{
     welcomeScreen(localStorage.getItem("loggedInuser"));
 }
-    
-}
+ }
 
 
 // function for login user
 function login() {
 
-    let usernameInput = document.getElementById("usernameInput").value
-    let passwordInput = document.getElementById("passwordInput").value
-    
+    let usernameInput = document.getElementById("usernameInput").value;
+    let passwordInput = document.getElementById("passwordInput").value;
+
     //calling function for check user details
     validate(usernameInput,passwordInput);
-              
-
 }
 
-//*checking if usernameinput and passwordinput 
+//*checking if usernameinput and passwordinput
 //*are correct as in local storage
 
 function validate(receiveduser, receivedpassord){
 
-    //retrieving users from userLocation 
+    //retrieving users from userLocation
 
     let retrievedList= localStorage.getItem("userLocation");
 
@@ -126,18 +120,18 @@ function validate(receiveduser, receivedpassord){
     //matching user with password
 
     let isPasswordMatched= false;
+    let i;
 
-    for (let i = 0; i < List.length; i++) {
+    for (i = 0; i < List.length; i++) {
         let userObj = List[i];
-    
-        let userm = userObj.username;
+  let userm = userObj.username;
         let passd = userObj.password;
-        if((receiveduser==userm)&&(receivedpassord==passd)){
+        if((receiveduser===userm)&&(receivedpassord===passd)){
            isPasswordMatched= true;
         }
 
     }
-    if(isPasswordMatched == true)
+    if(isPasswordMatched === true)
     {
         localStorage.setItem("loggedInuser",receiveduser);
         content.innerHTML="";
@@ -152,15 +146,14 @@ function validate(receiveduser, receivedpassord){
     // function for welcome page for user
     function welcomeScreen(username){
 
-        let header = document.getElementById("topid");
-        header.innerText = "welcome";
-        header.className = "myHeader";
+        let header2 = document.getElementById("topid");
+        header2.innerText = "welcome";
+        header2.className = "myHeader";
 
         let welcomePage = document.createElement("h1");
         welcomePage.innerText = "Hello... " + username;
         content.append(welcomePage);
-       
-        let logoutBtn = document.createElement("button");
+     let logoutBtn = document.createElement("button");
         logoutBtn.innerText = "Log out!";
         content.append(logoutBtn);
         logoutBtn.addEventListener("click", logout);
@@ -169,15 +162,11 @@ function validate(receiveduser, receivedpassord){
 
     // function for user logout
     function logout() {
-
-        localStorage.removeItem("loggedInuser");
-        
-        let header = document.getElementById("topid");
-        header.innerText = "Login Page";
-        header.className = "myHeader";
-        
-       
-        content.innerHTML="";
+ localStorage.removeItem("loggedInuser");
+let header3 = document.getElementById("topid");
+        header3.innerText = "Login Page";
+        header3.className = "myHeader";
+      content.innerHTML="";
         homePage();
         }
     // function for error screen if user enter wrong details
@@ -187,29 +176,28 @@ function validate(receiveduser, receivedpassord){
         loginFail.innerText = "Please try again!";
         let loginFail1 = document.createElement("h1");
         loginFail1.innerText = "or signup!";
-        content.append(loginFail,loginFail1);        
+        content.append(loginFail,loginFail1);
 
     }
-    
+
     //function for signup for new users
 
     function signUpForm(){
 
     content.innerHTML="";
 
-    
 
-    let header = document.getElementById("topid");
-    header.innerText = "Sign Up!";
-    header.className = "myHeader";
+    let header4 = document.getElementById("topid");
+    header4.innerText = "Sign Up!";
+    header4.className = "myHeader";
 
     //adding new user input
-    
+
     let newUserInput = document.createElement("input");
     newUserInput.placeholder = "Username";
     newUserInput.type = "newUserInput";
     newUserInput.id = "newUserInput";
-    
+
 
     let userLabel1=document.createElement("label");
     userLabel1.innerText="User Name";
@@ -220,21 +208,20 @@ function validate(receiveduser, receivedpassord){
     newPasswordInput.placeholder = "password";
     newPasswordInput.type = "password";
     newPasswordInput.id = "newPasswordInput";
-    
+
     let pwdLabel1=document.createElement("label");
     pwdLabel1.innerText="password";
     newPasswordInput.prepend(pwdLabel1);
 
-    
 
-    //adding save button to save new user details    
+    //adding save button to save new user details
     let savebtn = document.createElement("button");
     savebtn.innerText = "save";
     savebtn.addEventListener("click", saveRegistration);
     content.append(userLabel1,newUserInput,pwdLabel1,newPasswordInput,savebtn);
-    
+
     }
-         
+
 // adding function to save new user and password details
 function saveRegistration(){
 
@@ -244,11 +231,11 @@ function saveRegistration(){
     let packedList=localStorage.getItem("userLocation");
 
     let unPackedList = JSON.parse(packedList);
-    
+
     let newObj = {
         "username": newUserInput,
         "password": newPasswordInput,
-        
+
       };
      // pushing new user to list
     unPackedList.push(newObj);
@@ -261,18 +248,14 @@ function saveRegistration(){
 }
 //function to signup resgitration
 function thanksforregistration(){
-   
-    
-    content.innerHTML="";
+content.innerHTML="";
 
     let thanksInput=document.createElement("label");
     thanksInput.innerText="Thanks for Resgistering with us";
     content.append(thanksInput);
-    
-   
-    let returnToHomescreen = document.createElement("button");
+ let returnToHomescreen = document.createElement("button");
     returnToHomescreen.innerText = "Return to homescreen";
     content.append(returnToHomescreen);
-    
+
     returnToHomescreen.addEventListener("click", homePage);
 }
